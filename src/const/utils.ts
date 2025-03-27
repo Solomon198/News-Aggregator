@@ -8,11 +8,19 @@ export const supportedCategories = [
   "Technology",
 ];
 
+const defaultFilter = {
+  label: "",
+  value: "",
+};
+
+const getDefaultFilterStructure = () => {
+  return Object.assign(defaultFilter) as typeof defaultFilter;
+};
 export const filtersDefaultState = {
-  searchText: "",
-  selectedDate: "",
-  selectedSource: "",
-  selectedCategory: "",
+  searchText: getDefaultFilterStructure(),
+  selectedDate: getDefaultFilterStructure(),
+  selectedSource: getDefaultFilterStructure(),
+  selectedCategory: getDefaultFilterStructure(),
 };
 
 export const newsSources = ["BBC", "New York Times", "The Guardian"];

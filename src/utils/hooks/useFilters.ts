@@ -1,4 +1,4 @@
-import { useReducer, useRef } from "react";
+import { useReducer } from "react";
 import filterReducer from "../reducers/filtersReducer";
 import {
   filtersDefaultState,
@@ -10,49 +10,60 @@ import moment from "moment";
 
 const useFilters = () => {
   const [filters, dispatch] = useReducer(filterReducer, filtersDefaultState);
-  const filterValues = useRef({
-    ...filtersDefaultState,
-  });
-
-  const filtersLabel = Object.values(filters).filter((filter) => filter.trim());
+  const filtersLabel = Object.values(filters)
+    .filter((filter) => filter.value)
+    .map((filter) => filter.label);
 
   const handleSelectedCategory = (value: string) => {
     const category = supportedCategoriesMenu.find(
       (category) => category.value === value
     );
-    filterValues.current["selectedCategory"] = value;
     dispatch({
       type: "SET_FILTER_VALUE",
       field: "selectedCategory",
-      value: category!.name,
+      value: value,
+      label: category!.name,
     });
   };
+
   const handleSetSearchText = (value: string) => {
-    filterValues.current["searchText"] = value;
-    dispatch({ type: "SET_FILTER_VALUE", field: "searchText", value });
+    dispatch({
+      type: "SET_FILTER_VALUE",
+      field: "searchText",
+      value: value,
+      label: value,
+    });
   };
+
   const handleSelectedDate = (value: dayjs.Dayjs) => {
-    filterValues.current["selectedDate"] = value.toISOString();
     dispatch({
       type: "SET_FILTER_VALUE",
       field: "selectedDate",
-      value: moment(value.toDate()).fromNow(),
+      label: moment(value.toDate()).fromNow(),
+      value: value.toISOString(),
     });
   };
+
   const handleSelectedSource = (value: string) => {
     const source = newsSourcesMenu.find((source) => source.value === value);
     dispatch({
       type: "SET_FILTER_VALUE",
       field: "selectedSource",
-      value: source!.name,
+      label: source!.name,
+      value: value,
     });
   };
 
   const handleRemoveFilter = (label: string) => {
     const filtersKeys = Object.keys(filters) as (keyof typeof filters)[];
     filtersKeys.forEach((key: keyof typeof filters) => {
-      if (filters[key] === label) {
-        dispatch({ type: "SET_FILTER_VALUE", field: key, value: "" });
+      if (filters[key].label === label) {
+        dispatch({
+          type: "SET_FILTER_VALUE",
+          field: key,
+          value: "",
+          label: "",
+        });
       }
     });
   };

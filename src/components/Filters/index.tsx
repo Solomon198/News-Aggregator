@@ -1,5 +1,3 @@
-import { Box, IconButton } from "@mui/material";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import { StyledFlexBoxCenter } from "../../global.styled.components";
 import { StyledFilterContainer } from "./styled.components";
 import CategoryFilter from "./CategoryFilter";
@@ -25,12 +23,6 @@ const Filters = ({
       />
 
       <StyledFlexBoxCenter>
-        <Box>
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Box>
-
         <CustomDatePickerFilter onDateSelected={onDateSelected} />
 
         <SourceFilter

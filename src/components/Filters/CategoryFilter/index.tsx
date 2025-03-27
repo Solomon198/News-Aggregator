@@ -1,5 +1,6 @@
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { ISelectComponent } from "../../../types";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import useContainerOverflow from "../../../utils/hooks/useOverflowing";
 import OverFlowMenu from "./OverflowMenu";
 import { StyledCategoryContainer } from "../styled.components";
@@ -14,6 +15,9 @@ const CategoryFilter = ({
   return (
     <>
       <StyledCategoryContainer ref={containerRef}>
+        <IconButton>
+          <FilterListIcon />
+        </IconButton>
         {menuItems.map(({ name, value }) => (
           <Button
             key={value}

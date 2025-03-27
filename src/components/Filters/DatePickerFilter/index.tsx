@@ -1,44 +1,39 @@
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import InputLabel from "@mui/material/InputLabel";
 import { StyledCustomDatePicker } from "../styled.components";
 import { IFilterProps } from "../../../types";
+import { useRef } from "react";
+import { IconButton } from "@mui/material";
+import dayjs from "dayjs";
 
 const CustomDatePickerFilter = ({
   onDateSelected,
 }: Pick<IFilterProps, "onDateSelected">) => {
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <StyledCustomDatePicker>
-        <InputLabel sx={{ fontSize: 14 }}>Date</InputLabel>
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
-        <DatePicker
-          onChange={(value) => {
-            onDateSelected?.(value!);
-          }}
-          disableFuture
-          slots={{ openPickerIcon: CalendarMonthIcon }}
-          slotProps={{
-            textField: {
-              sx: {
-                "& .MuiInputBase-root": {
-                  borderBottom: "none !important", // Removes underline
-                },
-                "& .MuiInput-underline:before, & .MuiInput-underline:after": {
-                  display: "none", // Hides the underline
-                },
-              },
-              variant: "standard",
-              inputProps: {
-                style: { display: "none" },
-              },
-            },
-          }}
-        />
-      </StyledCustomDatePicker>
-    </LocalizationProvider>
+  const handleIconClick = () => {
+    if (inputRef.current) {
+      inputRef.current.showPicker();
+      inputRef.current.click();
+    }
+  };
+
+  const handleDateChanged = (e: React.ChangeEvent<HTMLInputElement>) => {
+    onDateSelected?.(dayjs(new Date(e.target.value)));
+  };
+  return (
+    <StyledCustomDatePicker>
+      <IconButton onClick={handleIconClick}>
+        <CalendarMonthIcon />
+      </IconButton>
+      <input
+        id="date-picker"
+        ref={inputRef}
+        max={new Date().toISOString().split("T")[0]}
+        type="date"
+        style={{ visibility: "hidden", opacity: 0, width: 0, height: 0 }}
+        onChange={handleDateChanged}
+      />
+    </StyledCustomDatePicker>
   );
 };
 

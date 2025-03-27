@@ -6,7 +6,7 @@ const Chips = ({
   onSelected,
 }: { menuItems: string[] } & Pick<ISelectComponent, "onSelected">) => {
   return menuItems.map((name) => (
-    <Chip sx={{ mr: 1 }} label={name} onDelete={() => onSelected?.(name)} />
+    <Chip sx={{ m: 0.5 }} label={name} onDelete={() => onSelected?.(name)} />
   ));
 };
 

@@ -1,6 +1,7 @@
 import { Button, Menu, MenuItem } from "@mui/material";
 import useMenu from "../../../../utils/hooks/useMenu";
 import { ISelectComponent } from "../../../../types";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const OverFlowMenu = ({
   menuItems,
@@ -14,7 +15,13 @@ const OverFlowMenu = ({
   };
   return (
     <>
-      <Button onClick={handleClick}>...</Button>
+      <Button
+        color="inherit"
+        endIcon={<ExpandMoreIcon />}
+        onClick={handleClick}
+      >
+        ...
+      </Button>
       <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         {menuItems.map(({ name, value }) => (
           <MenuItem

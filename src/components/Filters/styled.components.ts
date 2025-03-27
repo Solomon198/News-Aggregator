@@ -13,10 +13,8 @@ export const StyledCategoryContainer = styled(Box)(() => ({
 }));
 
 export const StyledCustomDatePicker = styled(StyledFlexBoxCenter)(() => ({
-  border: "solid 1px lightgray",
   padding: "3px 4px",
   margin: "0px 5px",
-  borderRadius: 10,
 }));
 
 export const StyledSourceContainer = styled(StyledFlexBoxCenter)(() => ({
