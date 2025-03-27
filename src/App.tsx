@@ -24,7 +24,7 @@ export default function App() {
     <>
       <MainHeader
         logoUrl="/images/logo.jpeg"
-        rightButtonText="Personalize"
+        rightButtonText="Customize"
         searchPlaceHolder="Search news ..."
         searchValue={filters.searchText.value}
         onSearch={handleSetSearchText}

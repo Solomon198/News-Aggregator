@@ -1,7 +1,7 @@
 import { Avatar, Box, Button } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { StyledHeader } from "./styled.components";
-import SearchBar from "./searchBar";
+import SearchBar from "../SearchBar";
 
 interface Props {
   logoUrl: string;
@@ -38,7 +38,7 @@ export default function MainHeader({
 
       <Box>
         <Button
-          sx={{ textTransform: "none", borderRadius: 10 }}
+          sx={{ textTransform: "none", borderRadius: 10, py: 1 }}
           size="small"
           onClick={onClick}
           variant="outlined"

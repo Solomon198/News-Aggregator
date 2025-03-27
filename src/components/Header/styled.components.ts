@@ -1,4 +1,4 @@
-import { Container, Paper, styled } from "@mui/material";
+import { Container, styled } from "@mui/material";
 
 export const StyledHeader = styled(Container)(() => ({
   padding: "2px 4px",
@@ -11,11 +11,4 @@ export const StyledHeader = styled(Container)(() => ({
   right: 0,
   top: 0,
   background: "#fff",
-}));
-
-export const StyledSearchBar = styled(Paper)(() => ({
-  display: "flex",
-  alignItems: "center",
-  borderRadius: 20,
-  width: "50%",
 }));

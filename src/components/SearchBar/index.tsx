@@ -1,7 +1,7 @@
 import { IconButton } from "@mui/material";
-import { StyledSearchBar } from "../styled.components";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
+import { StyledSearchBar } from "../styled.components";
 
 interface Props {
   searchPlaceHolder: string;

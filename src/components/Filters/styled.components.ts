@@ -12,14 +12,10 @@ export const StyledCategoryContainer = styled(Box)(() => ({
   display: "inline-block",
 }));
 
-export const StyledCustomDatePicker = styled(StyledFlexBoxCenter)(() => ({
-  padding: "3px 4px",
-  margin: "0px 5px",
-}));
+export const StyledCustomDatePicker = styled(StyledFlexBoxCenter)``;
 
 export const StyledSourceContainer = styled(StyledFlexBoxCenter)(() => ({
   m: 1,
-  margin: "0px 5px",
   border: "solid 1px lightgray",
   padding: "3px 4px",
   borderRadius: 10,
