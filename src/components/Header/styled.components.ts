@@ -9,11 +9,13 @@ export const StyledHeader = styled(Container)(() => ({
   position: "fixed",
   left: 0,
   right: 0,
+  top: 0,
+  background: "#fff",
 }));
 
 export const StyledSearchBar = styled(Paper)(() => ({
   display: "flex",
   alignItems: "center",
   borderRadius: 20,
-  width: "40%",
+  width: "50%",
 }));
