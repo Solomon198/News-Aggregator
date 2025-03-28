@@ -11,8 +11,7 @@ const applyTheGuardianFilter = (filters: typeof filtersDefaultState) => {
   const { searchText, selectedDate, selectedCategory } = filters;
   const query = {
     "show-fields": "thumbnail",
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as Record<string, string | number | any>;
+  } as Record<string, string>;
 
   const preferences = localStorage.getItem(preferenceStorageKey);
 
@@ -38,7 +37,7 @@ const applyTheGuardianFilter = (filters: typeof filtersDefaultState) => {
     }
   }
 
-  return new URLSearchParams(query);
+  return new URLSearchParams(query).toString();
 };
 
 export default async function TheGuardian(

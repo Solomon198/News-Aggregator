@@ -6,23 +6,16 @@ import {
   Typography,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { newsSourcesMenu, supportedCategoriesMenu } from "../../const/utils";
+import {
+  newsSourcesMenu,
+  randomArthors,
+  supportedCategoriesMenu,
+} from "../../const/utils";
 import SelectComponent from "../SelectComponent";
 import CustomListItem from "../ListItem";
 import usePreferences from "../../utils/hooks/usePreferences";
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-const menus = names.map((r) => ({ name: r, value: r }));
+
+const menus = randomArthors.map((r) => ({ name: r, value: r }));
 
 interface Props {
   open: boolean;

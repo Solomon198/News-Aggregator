@@ -9,9 +9,7 @@ import { getClearbitLogo, getRelativeTime } from "../../helpers/functions";
 
 const applyNewYourTimesFilter = (filters: typeof filtersDefaultState) => {
   const { searchText, selectedDate, selectedCategory } = filters;
-  const query = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as Record<string, string | number | any>;
+  const query = {} as Record<string, string>;
 
   const preferences = localStorage.getItem(preferenceStorageKey);
 
@@ -37,7 +35,7 @@ const applyNewYourTimesFilter = (filters: typeof filtersDefaultState) => {
     }
   }
 
-  return new URLSearchParams(query);
+  return new URLSearchParams(query).toString();
 };
 
 export default async function NewYorkTimes(

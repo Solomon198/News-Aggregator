@@ -4,7 +4,6 @@ export const supportedCategories = [
   "Football",
   "World",
   "Politics",
-  "Business",
   "Technology",
   "Sports",
   "Health",
@@ -50,3 +49,16 @@ export const supportedCategoriesMenu = supportedCategories.map((category) => ({
   name: category,
   value: category.toLowerCase(),
 }));
+
+export const randomArthors = [
+  "Oliver Hansen",
+  "Van Henry",
+  "April Tucker",
+  "Ralph Hubbard",
+  "Omar Alexander",
+  "Carlos Abbott",
+  "Miriam Wagner",
+  "Bradley Wilkerson",
+  "Virginia Andrews",
+  "Kelly Snyder",
+];

@@ -1,18 +1,17 @@
 import moment from "moment";
-import {
-  filtersDefaultState,
-  preferenceStorageKey,
-} from "../../../const/utils";
+import { filtersDefaultState } from "../../../const/utils";
 import { INews, INewsAPIResponse, IPreferences } from "../../../types";
-import { getClearbitLogo, getRelativeTime } from "../../helpers/functions";
+import {
+  getClearbitLogo,
+  getPreferences,
+  getRelativeTime,
+} from "../../helpers/functions";
 
 const applyNewsAPIFilter = (filters: typeof filtersDefaultState) => {
   const { searchText, selectedDate, selectedCategory } = filters;
-  const query = {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as Record<string, string | number | any>;
+  const query = {} as Record<string, string>;
 
-  const preferences = localStorage.getItem(preferenceStorageKey);
+  const preferences = getPreferences();
 
   if (filters.searchText.value.trim()) {
     query["q"] = searchText.value;
@@ -38,7 +37,7 @@ const applyNewsAPIFilter = (filters: typeof filtersDefaultState) => {
     query["category"] = "general";
   }
 
-  return new URLSearchParams(query);
+  return new URLSearchParams(query).toString();
 };
 
 export default async function NewsAPI(
