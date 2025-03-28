@@ -3,6 +3,7 @@ import { QueryKeys } from "../../const/api";
 import NewsAggregator from "../api";
 import { filtersDefaultState, NewsSources } from "../../const/utils";
 import usePreferences from "./usePreferences";
+import { useMemo } from "react";
 
 const useAggregatedNews = (filters: typeof filtersDefaultState) => {
   const { preferences } = usePreferences();
@@ -52,9 +53,9 @@ const useAggregatedNews = (filters: typeof filtersDefaultState) => {
 
   const isLoading = queries.some((query) => query.isLoading);
   const isError = queries.some((query) => query.isError);
-  const aggregatedData = queries
-    .flatMap((query) => query.data || [])
-    .sort(() => Math.random() - 0.5);
+  const aggregatedData = useMemo(() => {
+    return queries.flatMap((query) => query.data || []);
+  }, [queries]);
 
   return {
     isLoading,
