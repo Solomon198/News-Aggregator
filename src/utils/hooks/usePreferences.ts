@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
-import { preferenceStorageKey } from "../../const/utils";
+import { defaultPref, preferenceStorageKey } from "../../const/utils";
+import { IPreferences } from "../../types";
 
 const usePreferences = () => {
-  const [preferences, setPreferences] = useState({
-    authors: [] as string[],
-    selectedCategories: [] as string[],
-    selectedSources: [] as string[],
-  });
+  const $preferences = localStorage.getItem(preferenceStorageKey);
+  const intialPref = (
+    $preferences ? JSON.parse($preferences) : defaultPref
+  ) as IPreferences;
+  const [preferences, setPreferences] = useState(intialPref);
   const [preferencesChanged, setPreferencesChanged] = useState(false);
-
-  useEffect(() => {
-    const $preferences = localStorage.getItem(preferenceStorageKey);
-    if ($preferences) {
-      setPreferences(JSON.parse($preferences));
-    }
-  }, []);
 
   useEffect(() => {
     const isNotStateEmpty = Object.values(preferences).flat(1).length;

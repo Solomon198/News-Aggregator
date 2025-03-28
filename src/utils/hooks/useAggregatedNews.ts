@@ -18,16 +18,27 @@ const useAggregatedNews = (filters: typeof filtersDefaultState) => {
     ? selectedSources.includes(NewsSources.NewsAPI)
     : true;
 
+  const TheGaurdianEnabled = sourceFilter
+    ? sourceFilter === NewsSources.TheGuardian
+    : hasSourcePreferences
+    ? selectedSources.includes(NewsSources.TheGuardian)
+    : true;
+
   const queries = useQueries({
     queries: [
       {
         queryKey: [QueryKeys.NewsAPI, filters, preferences],
         queryFn: () => NewsAggregator.NewsAPI(filters),
         enabled: newsAPIEnabled,
-        staleTime: 0,
+      },
+      {
+        queryKey: [QueryKeys.TheGuardian, filters, preferences],
+        queryFn: () => NewsAggregator.TheGuardian(filters),
+        enabled: TheGaurdianEnabled,
       },
     ],
   });
+
   const isLoading = queries.some((query) => query.isLoading);
   const isError = queries.some((query) => query.isError);
   const aggregatedData = queries.flatMap((query) => query.data || []);

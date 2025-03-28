@@ -31,7 +31,9 @@ const applyNewsAPIFilter = (filters: typeof filtersDefaultState) => {
   } else if (preferences) {
     const $preferences = JSON.parse(preferences) as IPreferences;
     const selectedCategories = $preferences.selectedCategories;
-    query["category"] = selectedCategories.join(",");
+    if (selectedCategories.length) {
+      query["category"] = selectedCategories.join(",");
+    }
   } else {
     query["category"] = "general";
   }

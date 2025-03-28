@@ -6,6 +6,8 @@ export const supportedCategories = [
   "Science",
   "Sports",
   "Technology",
+  "Football",
+  "Politics",
 ];
 
 export const preferenceStorageKey = "preferences";
@@ -25,6 +27,11 @@ export const filtersDefaultState = {
   selectedCategory: getDefaultFilterStructure(),
 };
 
+export const defaultPref = {
+  authors: [] as string[],
+  selectedCategories: [] as string[],
+  selectedSources: [] as string[],
+};
 export const NewsSources = {
   NewsAPI: "News API",
   NewYorkTimes: "New York Times",

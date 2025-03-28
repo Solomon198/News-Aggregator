@@ -1,3 +1,3 @@
 import NewsAPI from "./newsApi";
-
-export default { NewsAPI };
+import TheGuardian from "./theGuardian";
+export default { NewsAPI, TheGuardian };
