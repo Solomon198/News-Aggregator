@@ -8,6 +8,8 @@ export const supportedCategories = [
   "Technology",
 ];
 
+export const preferenceStorageKey = "preferences";
+
 const defaultFilter = {
   label: "",
   value: "",
@@ -23,11 +25,20 @@ export const filtersDefaultState = {
   selectedCategory: getDefaultFilterStructure(),
 };
 
-export const newsSources = ["BBC", "New York Times", "The Guardian"];
+export const NewsSources = {
+  NewsAPI: "News API",
+  NewYorkTimes: "New York Times",
+  TheGuardian: "The Guardian",
+};
+export const newsSources = [
+  NewsSources.NewsAPI,
+  NewsSources.NewYorkTimes,
+  NewsSources.TheGuardian,
+];
 
 export const newsSourcesMenu = newsSources.map((source) => ({
   name: source,
-  value: source.toLowerCase().split(" ").join("-"),
+  value: source,
 }));
 
 export const supportedCategoriesMenu = supportedCategories.map((category) => ({

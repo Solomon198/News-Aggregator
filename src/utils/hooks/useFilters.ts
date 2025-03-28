@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import filterReducer from "../reducers/filtersReducer";
 import {
   filtersDefaultState,
@@ -10,9 +10,25 @@ import moment from "moment";
 
 const useFilters = () => {
   const [filters, dispatch] = useReducer(filterReducer, filtersDefaultState);
+  const [searchText, setSearchText] = useState<string | undefined>();
   const filtersLabel = Object.values(filters)
     .filter((filter) => filter.value)
     .map((filter) => filter.label);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      if (searchText !== undefined) {
+        dispatch({
+          type: "SET_FILTER_VALUE",
+          field: "searchText",
+          value: searchText ?? "",
+          label: searchText ?? "",
+        });
+      }
+    }, 500);
+
+    return () => clearTimeout(handler);
+  }, [searchText]);
 
   const handleSelectedCategory = (value: string) => {
     const category = supportedCategoriesMenu.find(
@@ -27,12 +43,7 @@ const useFilters = () => {
   };
 
   const handleSetSearchText = (value: string) => {
-    dispatch({
-      type: "SET_FILTER_VALUE",
-      field: "searchText",
-      value: value,
-      label: value,
-    });
+    setSearchText(value);
   };
 
   const handleSelectedDate = (value: dayjs.Dayjs) => {
@@ -70,6 +81,7 @@ const useFilters = () => {
   return {
     filtersLabel,
     filters,
+    searchText,
     handleRemoveFilter,
     handleSelectedCategory,
     handleSetSearchText,

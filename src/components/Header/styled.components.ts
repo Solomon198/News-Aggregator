@@ -11,4 +11,5 @@ export const StyledHeader = styled(Container)(() => ({
   right: 0,
   top: 0,
   background: "#fff",
+  zIndex: 100,
 }));

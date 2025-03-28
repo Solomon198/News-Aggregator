@@ -29,17 +29,29 @@ interface Props {
   onToggle: () => void;
 }
 const PreferenceDrawer = ({ onToggle, open }: Props) => {
-  const { preferences, handleSetAuthors, handleSetItems } = usePreferences();
-
+  const {
+    preferences,
+    preferencesChanged,
+    handleSetAuthors,
+    handleSetCategory,
+    handleSetSelectedSource,
+  } = usePreferences();
+  const handleToggle = () => {
+    if (preferencesChanged) {
+      window.location.reload();
+    } else {
+      onToggle();
+    }
+  };
   return (
     <Drawer
       sx={{ width: window.screen.width }}
-      onClose={onToggle}
+      onClose={handleToggle}
       anchor="right"
       open={open}
     >
       <Container sx={{ width: window.screen.width }}>
-        <IconButton onClick={onToggle}>
+        <IconButton onClick={handleToggle}>
           <CloseIcon />
         </IconButton>
 
@@ -59,8 +71,9 @@ const PreferenceDrawer = ({ onToggle, open }: Props) => {
           return (
             <CustomListItem
               checked={checked}
+              type="radio"
               key={value}
-              onClick={() => handleSetItems(value, "selectedCategories")}
+              onClick={() => handleSetCategory(value)}
               label={name}
             />
           );
@@ -75,7 +88,7 @@ const PreferenceDrawer = ({ onToggle, open }: Props) => {
             <CustomListItem
               checked={checked}
               key={value}
-              onClick={() => handleSetItems(value, "selectedSources")}
+              onClick={() => handleSetSelectedSource(value)}
               label={name}
             />
           );

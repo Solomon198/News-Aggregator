@@ -38,7 +38,7 @@ export default function MainHeader({
 
       <Box>
         <Button
-          sx={{ textTransform: "none", borderRadius: 10, py: 1 }}
+          sx={{ textTransform: "none", borderRadius: 10, py: 0.5 }}
           size="small"
           onClick={onClick}
           variant="outlined"
