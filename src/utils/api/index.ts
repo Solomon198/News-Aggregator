@@ -1,3 +1,4 @@
 import NewsAPI from "./newsApi";
 import TheGuardian from "./theGuardian";
-export default { NewsAPI, TheGuardian };
+import NewYorkTimes from "./newYorkTimes";
+export default { NewsAPI, TheGuardian, NewYorkTimes };

@@ -1,13 +1,16 @@
 export const supportedCategories = [
   "Business",
   "Entertainment",
-  "General",
+  "Football",
+  "World",
+  "Politics",
+  "Business",
+  "Technology",
+  "Sports",
   "Health",
   "Science",
-  "Sports",
-  "Technology",
-  "Football",
-  "Politics",
+  "Environment",
+  "Education",
 ];
 
 export const preferenceStorageKey = "preferences";
@@ -37,13 +40,8 @@ export const NewsSources = {
   NewYorkTimes: "New York Times",
   TheGuardian: "The Guardian",
 };
-export const newsSources = [
-  NewsSources.NewsAPI,
-  NewsSources.NewYorkTimes,
-  NewsSources.TheGuardian,
-];
 
-export const newsSourcesMenu = newsSources.map((source) => ({
+export const newsSourcesMenu = Object.values(NewsSources).map((source) => ({
   name: source,
   value: source,
 }));

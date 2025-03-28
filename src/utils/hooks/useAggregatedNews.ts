@@ -24,6 +24,12 @@ const useAggregatedNews = (filters: typeof filtersDefaultState) => {
     ? selectedSources.includes(NewsSources.TheGuardian)
     : true;
 
+  const NewYorkTimesEnabled = sourceFilter
+    ? sourceFilter === NewsSources.NewYorkTimes
+    : hasSourcePreferences
+    ? selectedSources.includes(NewsSources.NewYorkTimes)
+    : true;
+
   const queries = useQueries({
     queries: [
       {
@@ -36,12 +42,19 @@ const useAggregatedNews = (filters: typeof filtersDefaultState) => {
         queryFn: () => NewsAggregator.TheGuardian(filters),
         enabled: TheGaurdianEnabled,
       },
+      {
+        queryKey: [QueryKeys.NewYorkTimes, filters, preferences],
+        queryFn: () => NewsAggregator.NewYorkTimes(filters),
+        enabled: NewYorkTimesEnabled,
+      },
     ],
   });
 
   const isLoading = queries.some((query) => query.isLoading);
   const isError = queries.some((query) => query.isError);
-  const aggregatedData = queries.flatMap((query) => query.data || []);
+  const aggregatedData = queries
+    .flatMap((query) => query.data || [])
+    .sort(() => Math.random() - 0.5);
 
   return {
     isLoading,

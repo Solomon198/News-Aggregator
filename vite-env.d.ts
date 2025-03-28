@@ -9,6 +9,7 @@ interface ImportMetaEnv {
   readonly VITE_THE_GUARDIAN_BASE_URL: string;
   readonly VITE_NEW_YORK_TIMES_BASE_URL: string;
   readonly VITE_NEWSAPI_BASE_URL: string;
+  VITE_NYT_ASSET_CDN_BASE_URL: string;
 }
 
 interface ImportMeta {
