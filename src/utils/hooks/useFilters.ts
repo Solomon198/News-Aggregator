@@ -76,6 +76,9 @@ const useFilters = () => {
           label: "",
         });
       }
+      if (key === "searchText") {
+        setSearchText("");
+      }
     });
   };
   return {

@@ -5,7 +5,7 @@ services:
       args:
         VITE_THE_GUARDIAN_API_KEY: "411e55ea-9566-4398-b5b3-c9d7d22ad50a"
         VITE_NEW_YORK_TIMES_API_KEY: "QbX6eLh4AXgdeBGMM7qiDuCkSTIg9hHT"
-        VITE_NEWSAPI_API_KEY: "a21db7c5ac884c709e87582e6e6d157a"
+        VITE_NEWSAPI_API_KEY: "0c9bf0f71b544f4bb0af3ae8c6ab1138"
         VITE_THE_GUARDIAN_BASE_URL: "https://content.guardianapis.com"
         VITE_NEW_YORK_TIMES_BASE_URL: "https://api.nytimes.com"
         VITE_NYT_ASSET_CDN_BASE_URL: "https://static01.nyt.com"

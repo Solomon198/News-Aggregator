@@ -3,12 +3,15 @@ import { QueryKeys } from "../../const/api";
 import NewsAggregator from "../api";
 import { filtersDefaultState, NewsSources } from "../../const/utils";
 import usePreferences from "./usePreferences";
-import { useMemo } from "react";
+import { useRef } from "react";
+import { INews } from "../../types";
 
 const useAggregatedNews = (filters: typeof filtersDefaultState) => {
   const { preferences } = usePreferences();
 
   const { selectedSources } = preferences;
+  const originalData = useRef([] as INews[]);
+  const sortedData = useRef([] as INews[]);
 
   const sourceFilter = filters.selectedSource.value.trim();
   const hasSourcePreferences = selectedSources.length > 0;
@@ -53,9 +56,14 @@ const useAggregatedNews = (filters: typeof filtersDefaultState) => {
 
   const isLoading = queries.some((query) => query.isLoading);
   const isError = queries.some((query) => query.isError);
-  const aggregatedData = useMemo(() => {
-    return queries.flatMap((query) => query.data || []);
-  }, [queries]);
+  const data = queries.flatMap((query) => query.data || []);
+  let aggregatedData = sortedData.current;
+
+  if (JSON.stringify(originalData.current) !== JSON.stringify(data)) {
+    originalData.current = [...data];
+    aggregatedData = [...data].sort(() => Math.random() - 0.5);
+    sortedData.current = aggregatedData;
+  }
 
   return {
     isLoading,
